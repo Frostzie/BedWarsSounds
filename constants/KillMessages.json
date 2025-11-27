@@ -1,0 +1,11 @@
+{
+  "BestMessage": {
+    "NormalKill": " was stomped by PLAYER.",
+    "VoidKill": " was thrown down a pit by PLAYER.",
+    "BowKill": " was shot by PLAYER.",
+    "GroundKill": " was thrown to the ground by PLAYER.",
+    "GolemKill": " was outclassed by PLAYER's Golem.",
+    "BedBreak": " Bed was # destroyed by PLAYER!",
+    "CustomFinal": " was PLAYER's final #"
+  }
+}
