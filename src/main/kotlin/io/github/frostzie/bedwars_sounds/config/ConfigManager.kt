@@ -1,17 +1,18 @@
-package com.example.config
+package io.github.frostzie.bedwars_sounds.config
 
-import com.example.config.categories.ExampleModConfig
-import com.example.errors.ConfigError
 import com.google.gson.GsonBuilder
 import com.google.gson.TypeAdapter
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonWriter
-import io.github.moulberry.moulconfig.gui.GuiScreenElementWrapper
-import io.github.moulberry.moulconfig.gui.MoulConfigEditor
-import io.github.moulberry.moulconfig.observer.PropertyTypeAdapterFactory
-import io.github.moulberry.moulconfig.processor.BuiltinMoulConfigGuis
-import io.github.moulberry.moulconfig.processor.ConfigProcessorDriver
-import io.github.moulberry.moulconfig.processor.MoulConfigProcessor
+import io.github.frostzie.bedwars_sounds.config.categories.ModConfig
+import io.github.frostzie.bedwars_sounds.errors.ConfigError
+import io.github.notenoughupdates.moulconfig.gui.GuiScreenElementWrapper
+import io.github.notenoughupdates.moulconfig.observer.PropertyTypeAdapterFactory
+import io.github.notenoughupdates.moulconfig.processor.BuiltinMoulConfigGuis
+import io.github.notenoughupdates.moulconfig.processor.ConfigProcessorDriver
+import io.github.notenoughupdates.moulconfig.processor.MoulConfigProcessor
+import io.github.notenoughupdates.moulconfig.gui.MoulConfigEditor
+import io.github.frostzie.bedwars_sounds.utils.RepoManager
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiScreen
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
@@ -28,6 +29,7 @@ import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 import java.util.UUID
+import kotlin.getValue
 
 class ConfigManager {
     companion object {
@@ -48,16 +50,26 @@ class ConfigManager {
             .create()
     }
 
-    private var configDirectory = File("config/examplemod")
+    private var configDirectory = File("config/BedWarsSounds")
     private var configFile: File
-    var config: ExampleModConfig? = null
+    var config: ModConfig? = null
     private var lastSaveTime = 0L
 
-    private lateinit var processor: MoulConfigProcessor<ExampleModConfig>
+    private val repoManager by lazy { RepoManager(configDirectory) } // Move prob
+
+    private lateinit var processor: MoulConfigProcessor<ModConfig>
     private val editor by lazy { MoulConfigEditor(processor) }
 
     init {
         configDirectory.mkdirs()
+
+        // Try to download remote KillMessages.json // Move prob
+        try {
+            repoManager.tryDownloadJsonIfConfigured("KillMessages.json")
+        } catch (e: Exception) {
+            println("ConfigManager: remote KillMessages fetch failed: ${e.message}")
+        }
+
         configFile = File(configDirectory, "config.json")
 
         if (configFile.isFile) {
@@ -67,18 +79,19 @@ class ConfigManager {
 
         if (config == null) {
             println("Creating a clean config.")
-            config = ExampleModConfig()
+            config = ModConfig()
         }
 
         val config = config!!
         processor = MoulConfigProcessor(config)
         BuiltinMoulConfigGuis.addProcessors(processor)
 //        UpdateManager.injectConfigProcessor(processor)
-        ConfigProcessorDriver.processConfig(
-            config.javaClass,
-            config,
-            processor
-        )
+        ConfigProcessorDriver(processor).processConfig(config)
+//        ConfigProcessorDriver.processConfig(
+//            config.javaClass,
+//            config,
+//            processor
+//        )
 
         Runtime.getRuntime().addShutdownHook(Thread {
             save()
@@ -99,7 +112,7 @@ class ConfigManager {
                 builder.append(line)
                 builder.append("\n")
             }
-            config = gson.fromJson(builder.toString(), ExampleModConfig::class.java)
+            config = gson.fromJson(builder.toString(), ModConfig::class.java)
         } catch (e: Exception) {
             throw ConfigError("Could not load config", e)
         }
