@@ -8,85 +8,222 @@
     "BedBreak": "was destroyed by PLAYER."
   },
   "Fire": {
-
+    "NormalKill": "was struck down by PLAYER.",
+    "VoidKill": "was turned to dust by PLAYER.",
+    "BowKill": "was melted by PLAYER.",
+    "GroundKill": "was turned to ash by PLAYER.",
+    "GolemKill": "was fried by PLAYER's Golem.",
+    "BedBreak": "Green Bed was incinerated by PLAYER!"
   },
   "Western": {
-
+    "NormalKill": "was filled full of lead by PLAYER.",
+    "VoidKill": "met their end by PLAYER.",
+    "BowKill": "was killed with dynamite by PLAYER.",
+    "GroundKill": "lost a drinking contest with PLAYER.",
+    "GolemKill": "lost the draw to PLAYER's Golem.",
+    "BedBreak": "Green Bed was iced by PLAYER!"
   },
   "Honourable": {
-
+    "NormalKill": "died in close combat to PLAYER.",
+    "VoidKill": "fought to the edge with PLAYER.",
+    "BowKill": "fell to the great marksmanship of PLAYER.",
+    "GroundKill": "stumbled off a ledge with help by PLAYER.",
+    "GolemKill": "tangoed with PLAYER's Golem.",
+    "BedBreak": "Green Bed had to raise the white flag to PLAYER!"
   },
   "Multiverse": {
-
+    "NormalKill": "was distorted by PLAYER.",
+    "VoidKill": "was thrown into the singularity by PLAYER.",
+    "BowKill": "was shot into another dimension by PLAYER.",
+    "GroundKill": "was thrown into a black hole by PLAYER.",
+    "GolemKill": "was launched into a wormhole by PLAYER's Golem.",
+    "BedBreak": "Green Bed was sucked into a black hole by PLAYER."
   },
   "Limbo": {
-
+    "NormalKill": "was sent to limbo by PLAYER.",
+    "VoidKill": "was pushed into limbo by PLAYER.",
+    "BowKill": "was shot into limbo by PLAYER.",
+    "GroundKill": "was pushed into limbo by PLAYER.",
+    "GolemKill": "was launched into limbo by PLAYER's Golem.",
+    "BedBreak": "Green Bed was sent to limbo by PLAYER."
   },
   "Love": {
-
+    "NormalKill": "was given the cold shoulder by PLAYER.",
+    "VoidKill": "was hit off by a love bomb from PLAYER.",
+    "BowKill": "was struck with Cupid's arrow by PLAYER.",
+    "GroundKill": "was out of the league of PLAYER.",
+    "GolemKill": "was no match for PLAYER's Golem.",
+    "BedBreak": "Green Bed was dismantled by PLAYER!"
   },
   "BBQ": {
-
+    "NormalKill": "was glazed in BBQ sauce by PLAYER.",
+    "VoidKill": "slipped in BBQ sauce off the edge spilled by PLAYER.",
+    "BowKill": "was thrown chili powder at by PLAYER.",
+    "GroundKill": "was not spicy enough for PLAYER.",
+    "GolemKill": "was sliced up by PLAYER's Golem.",
+    "BedBreak": "Green Bed was deep fried by PLAYER!"
   },
   "Woof Woof": {
-
+    "NormalKill": "was bitten by PLAYER.",
+    "VoidKill": "howled into the void for PLAYER.",
+    "BowKill": "caught the ball thrown by PLAYER.",
+    "GroundKill": "was distracted by a puppy placed by PLAYER.",
+    "GolemKill": "played too rough with PLAYER's Golem.",
+    "BedBreak": "Green Bed was ripped apart by PLAYER!"
   },
   "Santa's Workshop": {
-
+    "NormalKill": "was wrapped into a gift by PLAYER.",
+    "VoidKill": "hit the hard-wood floor because of PLAYER.",
+    "BowKill": "was put on the naughty list by PLAYER.",
+    "GroundKill": "was pushed down a slope by PLAYER.",
+    "GolemKill": "was turned to gingerbread by PLAYER's Golem.",
+    "BedBreak": "Green Bed was traded in for milk and cookies by PLAYER!"
   },
   "Primal": {
-
+    "NormalKill": "was hunted down by PLAYER.",
+    "VoidKill": "stumbled on a trap set by PLAYER.",
+    "BowKill": "got skewered by PLAYER.",
+    "GroundKill": "was thrown into a volcano by PLAYER.",
+    "GolemKill": "was mauled by PLAYER's Golem.",
+    "BedBreak": "Green Bed was sacrificed by PLAYER!"
   },
   "Oink": {
-
+    "NormalKill": "was oinked by PLAYER.",
+    "VoidKill": "slipped into void for PLAYER.",
+    "BowKill": "got attacked by a carrot from PLAYER.",
+    "GroundKill": "was distracted by a piglet from PLAYER.",
+    "GolemKill": "was oinked by PLAYER's Golem.",
+    "BedBreak": "Green Bed was gulped by PLAYER!"
   },
   "Squeak": {
-
+    "NormalKill": "was chewed up by PLAYER.",
+    "VoidKill": "was scared into the void by PLAYER.",
+    "BowKill": "stepped in a mouse trap placed by PLAYER.",
+    "GroundKill": "was distracted by a rat dragging pizza from PLAYER.",
+    "GolemKill": "squeaked around with PLAYER's Golem.",
+    "BedBreak": "Green Bed was squeaked apart by PLAYER!"
   },
   "Buzz": {
-
+    "NormalKill": "was buzzed to death by PLAYER.",
+    "VoidKill": "was bzzz'd into the void by PLAYER.",
+    "BowKill": "was startled by PLAYER.",
+    "GroundKill": "was stung off the edge by PLAYER.",
+    "GolemKill": "was bee'd by PLAYER's Golem.",
+    "BedBreak": "Green Bed was stung by PLAYER!"
   },
   "Ox'd": {
-
+    "NormalKill": "was trampled by PLAYER.",
+    "VoidKill": "was back kicked into the void by PLAYER.",
+    "BowKill": "was impaled from a distance by PLAYER.",
+    "GroundKill": "was headbutted off a cliff by PLAYER.",
+    "GolemKill": "was trampled by PLAYER's Golem.",
+    "BedBreak": "Green Bed was impaled by PLAYER!"
   },
   "Pirate": {
-
+    "NormalKill": "be sent to Davy Jones' locker by PLAYER.",
+    "VoidKill": "be cannonballed to death by PLAYER.",
+    "BowKill": "be shot and killed by PLAYER.",
+    "GroundKill": "be killed with magic by PLAYER.",
+    "GolemKill": "be killed with metal by PLAYER's Golem.",
+    "BedBreak": "Green Bed be shot with cannon by PLAYER!"
   },
   "Literally Spooky": {
-
+    "NormalKill": "was spooked by PLAYER.",
+    "VoidKill": "was spooked off the map by PLAYER.",
+    "BowKill": "was remotely spooked by PLAYER.",
+    "GroundKill": "was totally spooked by PLAYER.",
+    "GolemKill": "was spooked by PLAYER's Golem.",
+    "BedBreak": "Green Bed was spooked by PLAYER!"
   },
   "Memed": {
-
+    "NormalKill": "got rekt by PLAYER.",
+    "VoidKill": "took the L to PLAYER.",
+    "BowKill": "got smacked by PLAYER.",
+    "GroundKill": "got roasted by PLAYER.",
+    "GolemKill": "got bamboozled by PLAYER's Golem.",
+    "BedBreak": "Green Bed got memed by PLAYER!"
   },
   "Dramatic": {
-
+    "NormalKill": "was tragically backstabbed by PLAYER.",
+    "VoidKill": "was heartlessly let go by PLAYER.",
+    "BowKill": "Player's heart was pierced by PLAYER.",
+    "GroundKill": "was delivered into nothingness by PLAYER.",
+    "GolemKill": "was dismembered by PLAYER's Golem.",
+    "BedBreak": "Green Bed was dreadfully corrupted by PLAYER!"
   },
   "Noble": {
-
+    "NormalKill": "was crushed by PLAYER.",
+    "VoidKill": "was dominated by PLAYER.",
+    "BowKill": "was assassinated by PLAYER.",
+    "GroundKill": "was thrown off their high horse by PLAYER.",
+    "GolemKill": "was degraded by PLAYER's Golem.",
+    "BedBreak": "Green Bed was bed # destroyed by PLAYER!",
+    "CustomKill": "was PLAYER's final #"
   },
   "Snow Storm": {
-
+    "NormalKill": "was locked outside during a snow storm by PLAYER.",
+    "VoidKill": "was pushed into a snowbank by PLAYER.",
+    "BowKill": "was hit with a snowball from PLAYER.",
+    "GroundKill": "was shoved down an icy slope by PLAYER.",
+    "GolemKill": "got snowed in by PLAYER's Golem.",
+    "BedBreak": "Green Bed was made into a snowman by PLAYER!"
   },
   "Eggy": {
-
+    "NormalKill": "was painted pretty by PLAYER.",
+    "VoidKill": "was deviled into the void by PLAYER.",
+    "BowKill": "slipped into a pan placed by PLAYER.",
+    "GroundKill": "was flipped off the edge by PLAYER.",
+    "GolemKill": "was made sunny side up by PLAYER's Golem.",
+    "BedBreak": "Green Bed was scrambled by PLAYER!"
   },
   "Celebratory": {
-
+    "NormalKill": "was whacked with a party balloon by PLAYER.",
+    "VoidKill": "was popped into the void by PLAYER.",
+    "BowKill": "was shot with a roman candle by PLAYER.",
+    "GroundKill": "was launched like a firework by PLAYER.",
+    "GolemKill": "was lit up by PLAYER's Golem.",
+    "BedBreak": "Green Bed exploded from a firework by PLAYER!"
   },
   "Wrapped Up": {
-
+    "NormalKill": "was wrapped up by PLAYER.",
+    "VoidKill": "was tied into a bow by PLAYER.",
+    "BowKill": "was glued up by PLAYER.",
+    "GroundKill": "tripped over a present placed by PLAYER.",
+    "GolemKill": "was taped together by PLAYER's Golem.",
+    "BedBreak": "Green Bed was stuffed with tissue paper by PLAYER!"
   },
   "To The Moon": {
-
+    "NormalKill": "was crushed into moon dust by PLAYER.",
+    "VoidKill": "was sent the wrong way by PLAYER.",
+    "BowKill": "was hit by an asteroid from PLAYER.",
+    "GroundKill": "was blasted to the moon by PLAYER.",
+    "GolemKill": "was blown up by PLAYER's Golem.",
+    "BedBreak": "Green Bed was blasted to dust by PLAYER!"
   },
   "Festive": {
-
+    "NormalKill": "was smothered in holiday cheer by PLAYER.",
+    "VoidKill": "was banished into the ether by PLAYER's holiday spirit.",
+    "BowKill": "was sniped by a missile of festivity by PLAYER.",
+    "GroundKill": "was pushed by PLAYER's holiday spirit.",
+    "GolemKill": "was sung holiday tunes to by PLAYER's Golem.",
+    "BedBreak": "Green Bed was melted by PLAYER's holiday spirit!"
   },
   "Roar": {
-
+    "NormalKill": "was ripped to shreds by PLAYER.",
+    "VoidKill": "was charged by PLAYER.",
+    "BowKill": "was pounced on by PLAYER.",
+    "GroundKill": "was ripped and thrown by PLAYER.",
+    "GolemKill": "was ripped to shreds by PLAYER's Golem.",
+    "BedBreak": "Green Bed was ripped to shreds by PLAYER."
   },
   "Triumph": {
-
+    "NormalKill": "was bested by PLAYER.",
+    "VoidKill": "was knocked into the void by PLAYER.",
+    "BowKill": "was shot by PLAYER.",
+    "GroundKill": "was knocked off an edge by PLAYER.",
+    "GolemKill": "was bested by PLAYER's Golem.",
+    "BedBreak": "Green Bed was bed # destroyed by PLAYER!",
+    "CustomKill": "was PLAYER's final #"
   },
   "Glorious": {
     "NormalKill": "was stomped by PLAYER.",
@@ -98,9 +235,27 @@
     "CustomKill": "was PLAYER's final #"
   },
   "Bridging for Dummies": {
-
+    "NormalKill": "had a small brain moment while fighting PLAYER.",
+    "VoidKill": "was not able to block clutch against PLAYER.",
+    "BowKill": "got 360 no-scoped by PLAYER.",
+    "GroundKill": "forgot how many blocks they had left while fighting PLAYER.",
+    "GolemKill": "got absolutely destroyed by PLAYER's Golem.",
+    "BedBreak": "Green Bed has left the game after seeing PLAYER!"
   },
   "Social Distance": {
-
+    "NormalKill": "was too shy to meet PLAYER.",
+    "VoidKill": "didn't distance themselves properly from PLAYER.",
+    "BowKill": "was coughed at by PLAYER.",
+    "GroundKill": "tripped while trying to run away from PLAYER.",
+    "GolemKill": "got too close to PLAYER's Golem.",
+    "BedBreak": "Green Bed was contaminated by PLAYER!"
+  },
+  "Old Man": {
+    "NormalKill": "was yelled at by PLAYER.",
+    "VoidKill": "was thrown off the lawn by PLAYER.",
+    "BowKill": "was accidentally spit on by PLAYER.",
+    "GroundKill": "slipped on the fake teeth of PLAYER.",
+    "GolemKill": "was chased away by PLAYER's Golem.",
+    "BedBreak": "Green Bed was sold in a garage sale by PLAYER!"
   }
 }
