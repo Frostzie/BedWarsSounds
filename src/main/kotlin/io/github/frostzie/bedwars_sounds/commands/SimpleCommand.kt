@@ -1,6 +1,6 @@
-package com.example.commands
+package io.github.frostzie.bedwars_sounds.commands
 
-import com.example.errors.CommandError
+import io.github.frostzie.bedwars_sounds.errors.CommandError
 import net.minecraft.command.CommandBase
 import net.minecraft.command.ICommandSender
 import net.minecraft.util.BlockPos

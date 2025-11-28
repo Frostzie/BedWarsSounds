@@ -1,0 +1,65 @@
+{
+    "boomer": {
+      "category": "player",
+      "sounds": [
+        "bedwars_sounds:boomer"
+      ],
+      "stream": "false"
+    },
+    "oof": {
+      "category": "player",
+      "sounds": [
+        "bedwars_sounds:oof"
+      ],
+      "stream": "false"
+    },
+    "bruh": {
+      "category": "player",
+      "sounds": [
+        "bedwars_sounds:bruh"
+      ],
+      "stream": "false"
+    },
+    "quack": {
+      "category": "player",
+      "sounds": [
+        "bedwars_sounds:quack"
+      ],
+      "stream": "false"
+    },
+   "gotcha": {
+     "category": "player",
+     "sounds": [
+       "bedwars_sounds:gotcha"
+    ],
+     "stream": "false"
+   },
+  "knockback": {
+    "category": "player",
+    "sounds": [
+      "bedwars_sounds:knockback"
+    ],
+    "stream": "false"
+  },
+  "skeppyjsp": {
+    "category": "player",
+    "sounds": [
+      "bedwars_sounds:skeppyjsp"
+    ],
+    "stream": "false"
+  },
+  "okey": {
+    "category": "player",
+    "sounds": [
+      "bedwars_sounds:okey"
+    ],
+    "stream": "false"
+  },
+  "noice": {
+    "category": "player",
+    "sounds": [
+      "bedwars_sounds:noice"
+    ],
+    "stream": "false"
+  }
+}
