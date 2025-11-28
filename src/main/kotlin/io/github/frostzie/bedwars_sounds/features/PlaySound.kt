@@ -75,7 +75,7 @@ class PlaySound {
 
                 val cleanMessage = stripColorCodes(chatMessage)
                 if (cleanMessage.contains("FINAL KILL") &&
-                    BedWarsSounds.config.soundCategory.customFinalSound != SoundOptions.NONE) {
+                    getSoundName("FinalKill") != null) {
                     playSound("FinalKill")
                 } else {
                     playSound(eventType)
@@ -123,32 +123,46 @@ class PlaySound {
         return EnumChatFormatting.getTextWithoutFormattingCodes(text) ?: text
     }
 
-    private fun playSound(eventType: String) {
+    /**
+     * Gets the sound name for an event type, prioritizing custom text field over dropdown
+     */
+    private fun getSoundName(eventType: String): String? {
         val soundCategory = BedWarsSounds.config.soundCategory
-        val soundToPlay = when (eventType) {
-            "NormalKill" -> soundCategory.normalKillSound
-            "VoidKill" -> soundCategory.voidKillSound
-            "BowKill" -> soundCategory.bowKillSound
-            "GroundKill" -> soundCategory.groundKillSound
-            "GolemKill" -> soundCategory.golemKillSound
-            "BedBreak" -> soundCategory.bedBreakSound
-            "CustomKill" -> soundCategory.customKillSound
-            "FinalKill" -> soundCategory.customFinalSound
+
+        // Determine which fields to check based on event type
+        val (customField, dropdownField) = when (eventType) {
+            "NormalKill" -> soundCategory.normalKillSoundCustom to soundCategory.normalKillSound
+            "VoidKill" -> soundCategory.voidKillSoundCustom to soundCategory.voidKillSound
+            "BowKill" -> soundCategory.bowKillSoundCustom to soundCategory.bowKillSound
+            "GroundKill" -> soundCategory.groundKillSoundCustom to soundCategory.groundKillSound
+            "GolemKill" -> soundCategory.golemKillSoundCustom to soundCategory.golemKillSound
+            "BedBreak" -> soundCategory.bedBreakSoundCustom to soundCategory.bedBreakSound
+            "CustomKill" -> soundCategory.customKillSoundCustom to soundCategory.customKillSound
+            "FinalKill" -> soundCategory.customFinalSoundCustom to soundCategory.customFinalSound
             else -> {
                 logger.warning("Unknown event type: $eventType")
-                null
+                return null
             }
         }
 
-        soundToPlay?.getSoundName()?.let { soundName ->
-            // Get volume from config (0-100) and convert to 0.0-1.0 range
-            val volumePercent = BedWarsSounds.config.soundCategory.soundVolume
-            val volume = volumePercent / 100f
-
-            //logger.info("Playing sound '$soundName' for event '$eventType' at volume ${volumePercent}%")
-
-            val player = Minecraft.getMinecraft().thePlayer
-            player?.playSound(soundName, volume, 1.0f)
+        // Priority: custom text field > dropdown enum
+        return when {
+            // If custom field has content, use it
+            customField.isNotBlank() -> customField
+            // Otherwise use dropdown, but only if not NONE
+            dropdownField != SoundOptions.NONE -> dropdownField.soundName
+            // No sound selected
+            else -> null
         }
+    }
+
+    private fun playSound(eventType: String) {
+        val soundName = getSoundName(eventType) ?: return
+        // Get volume from config (0-100) and convert to 0.0-1.0 range
+        val volumePercent = BedWarsSounds.config.soundCategory.soundVolume
+        val volume = volumePercent / 100f
+
+        val player = Minecraft.getMinecraft().thePlayer
+        player?.playSound(soundName, volume, 1.0f)
     }
 }

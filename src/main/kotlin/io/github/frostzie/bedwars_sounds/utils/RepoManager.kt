@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 
 class RepoManager(private val targetDirectory: File) {
 
-    var githubRawUrl: String? = "https://raw.githubusercontent.com/Frostzie/BedWarsSounds/refs/heads/main/constants/KillMessages.json"
+    var githubRawUrl: String? = "https://raw.githubusercontent.com/Frostzie/BedWarsSounds/refs/heads/master/constants/KillMessages.json"
 
     /**
      * Attempts to download the configured GitHub raw URL into the target directory as the given filename

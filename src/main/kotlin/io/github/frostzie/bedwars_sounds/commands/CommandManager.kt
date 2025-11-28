@@ -8,7 +8,7 @@ import net.minecraftforge.client.ClientCommandHandler
 class CommandManager {
 
     init {
-        registerCommand("openconfig") {
+        registerCommand("bedWarsSoundsConfig") {
             BedWarsSounds.configManager.openConfigGui()
         }
     }
