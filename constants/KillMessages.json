@@ -1,11 +1,98 @@
 {
-  "BestMessage": {
-    "NormalKill": " was stomped by PLAYER.",
-    "VoidKill": " was thrown down a pit by PLAYER.",
-    "BowKill": " was shot by PLAYER.",
-    "GroundKill": " was thrown to the ground by PLAYER.",
-    "GolemKill": " was outclassed by PLAYER's Golem.",
-    "BedBreak": " Bed was # destroyed by PLAYER!",
-    "CustomFinal": " was PLAYER's final #"
+  "Fire": {
+
+  },
+  "Western": {
+
+  },
+  "Honourable": {
+
+  },
+  "Multiverse": {
+
+  },
+  "Limbo": {
+
+  },
+  "Love": {
+
+  },
+  "BBQ": {
+
+  },
+  "Woof Woof": {
+
+  },
+  "Santa's Workshop": {
+
+  },
+  "Primal": {
+
+  },
+  "Oink": {
+
+  },
+  "Squeak": {
+
+  },
+  "Buzz": {
+
+  },
+  "Ox'd": {
+
+  },
+  "Pirate": {
+
+  },
+  "Literally Spooky": {
+
+  },
+  "Memed": {
+
+  },
+  "Dramatic": {
+
+  },
+  "Noble": {
+
+  },
+  "Snow Storm": {
+
+  },
+  "Eggy": {
+
+  },
+  "Celebratory": {
+
+  },
+  "Wrapped Up": {
+
+  },
+  "To The Moon": {
+
+  },
+  "Festive": {
+
+  },
+  "Roar": {
+
+  },
+  "Triumph": {
+
+  },
+  "Glorious": {
+    "NormalKill": "was stomped by PLAYER.",
+    "VoidKill": "was thrown down a pit by PLAYER.",
+    "BowKill": "was shot by PLAYER.",
+    "GroundKill": "was thrown to the ground by PLAYER.",
+    "GolemKill": "was outclassed by PLAYER's Golem.",
+    "BedBreak": "Bed was # destroyed by PLAYER!",
+    "CustomFinal": "was PLAYER's final #"
+  },
+  "Bridging for Dummies": {
+
+  },
+  "Social Distance": {
+
   }
 }
