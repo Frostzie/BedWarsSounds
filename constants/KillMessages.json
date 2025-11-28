@@ -1,4 +1,12 @@
 {
+  "Default": {
+    "NormalKill": "was killed by PLAYER.",
+    "VoidKill": "was knocked into the void by PLAYER.",
+    "BowKill": "was killed by PLAYER.",
+    "GroundKill": "was knocked off a cliff by PLAYER.",
+    "GolemKill": "was killed by PLAYER's Dream Defender.",
+    "BedBreak": "was destroyed by PLAYER."
+  },
   "Fire": {
 
   },
@@ -87,7 +95,7 @@
     "GroundKill": "was thrown to the ground by PLAYER.",
     "GolemKill": "was outclassed by PLAYER's Golem.",
     "BedBreak": "Bed was # destroyed by PLAYER!",
-    "CustomFinal": "was PLAYER's final #"
+    "CustomKill": "was PLAYER's final #"
   },
   "Bridging for Dummies": {
 
