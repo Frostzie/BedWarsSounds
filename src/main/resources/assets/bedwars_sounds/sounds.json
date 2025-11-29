@@ -34,13 +34,6 @@
     ],
      "stream": "false"
    },
-  "knockback": {
-    "category": "player",
-    "sounds": [
-      "bedwars_sounds:knockback"
-    ],
-    "stream": "false"
-  },
   "skeppyjsp": {
     "category": "player",
     "sounds": [
