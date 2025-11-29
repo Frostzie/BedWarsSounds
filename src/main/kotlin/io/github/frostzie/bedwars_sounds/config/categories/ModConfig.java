@@ -21,6 +21,10 @@ public class ModConfig extends Config {
     public SoundCategory soundCategory = new SoundCategory();
 
     @Expose
+    @Category(name = "Custom Sounds", desc = "Configure custom sounds with resourcepack.")
+    public CustomSoundCategory customSoundCategory = new CustomSoundCategory();
+
+    @Expose
     @Category(name = "Debug", desc = "Few debug features to make it easier to update mod.")
     public DebugCategory debugCategory = new DebugCategory();
 }

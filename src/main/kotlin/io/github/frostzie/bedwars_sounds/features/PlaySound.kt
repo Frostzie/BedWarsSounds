@@ -1,9 +1,7 @@
 package io.github.frostzie.bedwars_sounds.features
 
-import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
-import com.google.gson.stream.JsonReader
 import io.github.frostzie.bedwars_sounds.BedWarsSounds
+import io.github.frostzie.bedwars_sounds.config.KillMessageTemplate
 import io.github.frostzie.bedwars_sounds.config.SoundOptions
 import io.github.frostzie.bedwars_sounds.utils.LoggerProvider
 import io.github.frostzie.bedwars_sounds.utils.NameDetection
@@ -11,39 +9,16 @@ import net.minecraft.client.Minecraft
 import net.minecraft.util.EnumChatFormatting
 import net.minecraftforge.client.event.ClientChatReceivedEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
-import java.io.File
 
 class PlaySound {
 
     private val logger = LoggerProvider.getLogger("BedWarsSounds")
-    private val killMessageTemplates: Map<String, String> by lazy {
-        loadKillMessageTemplates()
+    private val killMessages: List<String> by lazy {
+        KillMessageTemplate.getAllMessages()
     }
 
-    private fun loadKillMessageTemplates(): Map<String, String> {
-        val messagesFile = File("config/BedWarsSounds/KillMessages.json")
-
-        return try {
-            val gson = GsonBuilder().create()
-            val type = object : TypeToken<Map<String, Map<String, String>>>() {}.type
-
-            if (!messagesFile.isFile) {
-                logger.warning("KillMessages.json not found at ${messagesFile.path}")
-                return emptyMap()
-            }
-
-            JsonReader(messagesFile.reader()).use { jsonReader ->
-                jsonReader.isLenient = true
-                val nestedMap: Map<String, Map<String, String>> = gson.fromJson(jsonReader, type)
-                val templates = nestedMap.values.flatMap { it.entries }.associate { it.key to it.value }
-                logger.info("Successfully loaded ${templates.size} kill message templates.")
-                templates
-            }
-        } catch (e: Exception) {
-            logger.warning("Error parsing KillMessages.json: ${e.message}")
-            e.printStackTrace()
-            emptyMap()
-        }
+    init {
+        logger.info("Loaded ${killMessages.size} kill message templates from enum")
     }
 
     @SubscribeEvent
@@ -58,62 +33,47 @@ class PlaySound {
             return
         }
 
-        val chatMessage = event.message.unformattedText
+        val rawMessage = event.message.unformattedText
+        val cleanMessage = stripColorCodes(rawMessage)
         val playerName = NameDetection.getPlayerName()
 
         if (playerName.isBlank()) {
             return
         }
+        val isFinalKill = cleanMessage.contains("FINAL KILL!")
+        val isBedBreak = cleanMessage.contains("BED DESTRUCTION > ")
 
-        if (killMessageTemplates.isEmpty()) {
+        if (isBedBreak && cleanMessage.contains(playerName)) {
+            //logger.info("Matched bed break message by player: '$cleanMessage'")
+            playSound("BedBreak")
             return
         }
 
-        for ((eventType, template) in killMessageTemplates) {
-            if (messageMatches(template, chatMessage, playerName)) {
-                //logger.info("Match found for eventType: '$eventType'")
+        // Split message to get the part after the victim name
+        val parts = cleanMessage.split(" ", limit = 2)
+        if (parts.size > 1) {
+            val messageWithoutVictim = parts[1]
 
-                val cleanMessage = stripColorCodes(chatMessage)
-                if (cleanMessage.contains("FINAL KILL") &&
-                    getSoundName("FinalKill") != null) {
-                    playSound("FinalKill")
-                } else {
-                    playSound(eventType)
+            // Replace PLAYER placeholder with actual player name
+            for (template in killMessages) {
+                val formattedTemplate = template.replace("PLAYER", playerName)
+
+                if (messageWithoutVictim.startsWith(formattedTemplate)) {
+                    // If it's a final kill, play final kill sound if configured
+                    //logger.info("Matched kill message: '$cleanMessage'")
+                    if (isFinalKill && getSoundName("FinalKill") != null) {
+                        //logger.info("Playing FinalKill sound.")
+                        playSound("FinalKill")
+                    } else {
+                        // Otherwise determine the kill type and play that sound
+                        val killType = KillMessageTemplate.getKillType(template)
+                        //logger.info("Kill type is '$killType'. Playing sound.")
+                        killType?.let { playSound(it) }
+                    }
+                    return
                 }
-                return // Only trigger one sound per message
             }
         }
-    }
-
-    /**
-     * Checks if a chat message matches a kill message template.
-     *
-     * Expected format: "VictimName kill by PLAYER."
-     * Where PLAYER is replaced with the actual player name.
-     *
-     * The # symbol in templates is a placeholder for numbers/text (e.g., "final #3", "Bed was #1 destroyed")
-     */
-    private fun messageMatches(template: String, message: String, playerName: String): Boolean {
-        // Strip all Minecraft color/formatting codes from the message
-        val cleanMessage = stripColorCodes(message)
-
-        // Replace PLAYER placeholder with the actual player name
-        val processedTemplate = template.replace("PLAYER", playerName)
-
-        // Remove the # placeholder from template for matching
-        val templateWithoutHash = processedTemplate.replace(" #", "")
-
-        // Remove the actual dynamic content from the cleaned message (numbers/text after certain keywords)
-        val cleanedMessage = cleanMessage.replace(Regex(" #\\S+"), "")
-
-        // Check if the cleaned message contains the template
-        val isMatch = cleanedMessage.contains(templateWithoutHash, ignoreCase = true)
-
-        //if (isMatch) {
-        //    logger.info("[Match] Template: '$templateWithoutHash' found in Message: '$cleanedMessage'")
-        //}
-
-        return isMatch
     }
 
     /**
@@ -128,17 +88,16 @@ class PlaySound {
      */
     private fun getSoundName(eventType: String): String? {
         val soundCategory = BedWarsSounds.config.soundCategory
+        val customSoundCategory = BedWarsSounds.config.customSoundCategory
 
-        // Determine which fields to check based on event type
         val (customField, dropdownField) = when (eventType) {
-            "NormalKill" -> soundCategory.normalKillSoundCustom to soundCategory.normalKillSound
-            "VoidKill" -> soundCategory.voidKillSoundCustom to soundCategory.voidKillSound
-            "BowKill" -> soundCategory.bowKillSoundCustom to soundCategory.bowKillSound
-            "GroundKill" -> soundCategory.groundKillSoundCustom to soundCategory.groundKillSound
-            "GolemKill" -> soundCategory.golemKillSoundCustom to soundCategory.golemKillSound
-            "BedBreak" -> soundCategory.bedBreakSoundCustom to soundCategory.bedBreakSound
-            "CustomKill" -> soundCategory.customKillSoundCustom to soundCategory.customKillSound
-            "FinalKill" -> soundCategory.customFinalSoundCustom to soundCategory.customFinalSound
+            "NormalKill" -> customSoundCategory.normalKillSoundCustom to soundCategory.normalKillSound
+            "VoidKill" -> customSoundCategory.voidKillSoundCustom to soundCategory.voidKillSound
+            "BowKill" -> customSoundCategory.bowKillSoundCustom to soundCategory.bowKillSound
+            "GroundKill" -> customSoundCategory.groundKillSoundCustom to soundCategory.groundKillSound
+            "GolemKill" -> customSoundCategory.golemKillSoundCustom to soundCategory.golemKillSound
+            "BedBreak" -> customSoundCategory.bedBreakSoundCustom to soundCategory.bedBreakSound
+            "FinalKill" -> customSoundCategory.finalKillSoundCustom to soundCategory.finalKillSound
             else -> {
                 logger.warning("Unknown event type: $eventType")
                 return null
@@ -162,7 +121,11 @@ class PlaySound {
         val volumePercent = BedWarsSounds.config.soundCategory.soundVolume
         val volume = volumePercent / 100f
 
-        val player = Minecraft.getMinecraft().thePlayer
-        player?.playSound(soundName, volume, 1.0f)
+        try {
+            val player = Minecraft.getMinecraft().thePlayer
+            player?.playSound(soundName, volume, 1.0f)
+        } catch (e: Exception) {
+            logger.warning("Failed to play sound $soundName: ${e.message}")
+        }
     }
 }

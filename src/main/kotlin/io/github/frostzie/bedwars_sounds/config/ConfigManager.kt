@@ -12,7 +12,6 @@ import io.github.notenoughupdates.moulconfig.processor.BuiltinMoulConfigGuis
 import io.github.notenoughupdates.moulconfig.processor.ConfigProcessorDriver
 import io.github.notenoughupdates.moulconfig.processor.MoulConfigProcessor
 import io.github.notenoughupdates.moulconfig.gui.MoulConfigEditor
-import io.github.frostzie.bedwars_sounds.utils.RepoManager
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiScreen
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
@@ -29,7 +28,6 @@ import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 import java.util.UUID
-import kotlin.getValue
 
 class ConfigManager {
     companion object {
@@ -55,21 +53,11 @@ class ConfigManager {
     var config: ModConfig? = null
     private var lastSaveTime = 0L
 
-    private val repoManager by lazy { RepoManager(configDirectory) } // Move prob
-
     private lateinit var processor: MoulConfigProcessor<ModConfig>
     private val editor by lazy { MoulConfigEditor(processor) }
 
     init {
         configDirectory.mkdirs()
-
-        // Try to download remote KillMessages.json // Move prob
-        try {
-            repoManager.tryDownloadJsonIfConfigured("KillMessages.json")
-        } catch (e: Exception) {
-            println("ConfigManager: remote KillMessages fetch failed: ${e.message}")
-        }
-
         configFile = File(configDirectory, "config.json")
 
         if (configFile.isFile) {
@@ -85,13 +73,7 @@ class ConfigManager {
         val config = config!!
         processor = MoulConfigProcessor(config)
         BuiltinMoulConfigGuis.addProcessors(processor)
-//        UpdateManager.injectConfigProcessor(processor)
         ConfigProcessorDriver(processor).processConfig(config)
-//        ConfigProcessorDriver.processConfig(
-//            config.javaClass,
-//            config,
-//            processor
-//        )
 
         Runtime.getRuntime().addShutdownHook(Thread {
             save()
@@ -129,7 +111,6 @@ class ConfigManager {
             BufferedWriter(OutputStreamWriter(FileOutputStream(unit), StandardCharsets.UTF_8)).use { writer ->
                 writer.write(gson.toJson(config))
             }
-            // Perform move — which is atomic, unlike writing — after writing is done.
             Files.move(
                 unit.toPath(),
                 configFile.toPath(),

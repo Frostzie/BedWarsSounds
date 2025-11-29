@@ -12,7 +12,7 @@ public class DebugCategory {
     @Expose
     @ConfigOption(name = "Choose the sound", desc = "Choose the sound that will be played when pressing Test Sound.")
     @ConfigEditorDropdown
-    public SoundOptions testSoundChoice = SoundOptions.NONE;
+    public SoundOptions testSoundChoice = SoundOptions.BOOMER;
 
     @ConfigOption(name = "Test Sound", desc = "Test out sounds")
     @ConfigEditorButton(buttonText = "Click")
